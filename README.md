@@ -143,11 +143,13 @@ model = model.to(args.local_rank)
 1. Pytorch officially provides two running methods: `torch.distributed.launch` and `torch.multiprocessing.spawn`, but when I use the latter, sometimes the GPU will not be          automatically released after training, so this article uses `torch.distributed.launch` to do it Demo.
 2. This article mainly demonstrates the single-node multi-GPU operation mode: CUDA_VISIBLE_DEVICES specifies the GPU used, nproc_per_node is the number of GPUs used by the node,    if you need to perform multiple trainings, stagger the master_port, [here](https://github.com/pytorch/pytorch/blob/master/torch/distributed/launch.py) is a more detailed        description.
 
-```CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2 --master_port=6666 DDP_warmup.py -en=DDP_warmup```
+```
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2 --master_port=6666 DDP_warmup.py -en=DDP_warmup
+```
 
 The operating environment of this article is CUDA10.2, cuDNN7.6.5, Python3.7, Pytorch1.3.1
 
 ## Function implementation
 
-1. Lookahead implementation: https://github.com/alphadl/lookahead.pytorch
-2. Early-stopping, random seed implementation: https://github.com/Lance0218/Pytorch-DistributedDataParallel-Training-Tricks/blob/master/customized_function.py
+1. Lookahead implementation: [lookahead.pytorch](https://github.com/alphadl/lookahead.pytorch)
+2. Early-stopping, random seed implementation: [customized_function.py](https://github.com/Lance0218/Pytorch-DistributedDataParallel-Training-Tricks/blob/master/customized_function.py)
