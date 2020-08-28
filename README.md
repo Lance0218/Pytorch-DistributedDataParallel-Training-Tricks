@@ -1,7 +1,7 @@
 # Pytorch-DistributedDataParallel-Training-Tricks
 
-This is an example that integrates **Pytorch DistributedDataParallel, Apex, warm-up, learning rate scheduler**, if you need to read this article in Chinese, please check my [Medium](https://medium.com/@fig498etyu6600/training-tricks-for-pytorch-distributed-data-parallel-1cd48cc7d97a) link.
-In the following chapters, I will introduce how to use DistributedDataParallel (DDP). And how to assimilate three training techniques of Apex, warm-up, and learning rate scheduler into DDP training in order. I will also mention the set-up of early-stopping and Random seed.
+This is an example that integrates **Pytorch DistributedDataParallel, Apex, warmup, learning rate scheduler**, if you need to read this article in Chinese, please check my [Medium](https://medium.com/@fig498etyu6600/training-tricks-for-pytorch-distributed-data-parallel-1cd48cc7d97a) link.
+In the following chapters, I will introduce how to use DistributedDataParallel (DDP). And how to assimilate three training techniques of Apex, warmup, and learning rate scheduler into DDP training in order. I will also mention the set-up of early-stopping and Random seed.
 
 ## DistributedDataParallel (DDP)
 
@@ -70,12 +70,12 @@ for epoch in range(args.epochs):
         apex_optimizer.step()   # (L24)
 ```
 
-## Warm-up & learning rate scheduler & early-stopping
+## Warmup & learning rate scheduler & early-stopping
 
-1. Warm-up is a training trick. By warming up the learning rate from small to large, the instability caused by the initial learning rate can be avoided, and the direction of        stable optimization can be found faster. It has been proven effective in some tasks. The article is realized through lr_scheduler (L6, L7, L28, L29).
+1. Warmup is a training trick. By warming up the learning rate from small to large, the instability caused by the initial learning rate can be avoided, and the direction of        stable optimization can be found faster. It has been proven effective in some tasks. The article is realized through lr_scheduler (L6, L7, L28, L29).
 2. Learning rate scheduler is also a technique for training models. This article uses `lr_scheduler.ReduceLROnPlateau`, which I prefer to use, as an example (L8, L30). Note that    the optimizer in `lr_scheduler` should point to the built-in Pytorch instead of the additional one (L7, L8).
 3. This article also includes early-stopping to reduce overfitting (L9, L31~L33), and there are also examples of using consine learning rate as attenuation. If you are              interested, please check [here](https://medium.com/r?url=https%3A%2F%2Fgithub.com%2FLance0218%2FPytorch-DistributedDataParallel-Training-Tricks%2Fblob%2Fmaster%2FDDP_warmupcos.py).
-4. The warm-up learning rate in this article starts from 0. If you want to have a value from the beginning, you can add (L12, L13) and replace (L28, L29) with (L17, L18).
+4. The warmup learning rate in this article starts from 0. If you want to have a value from the beginning, you can add (L12, L13) and replace (L28, L29) with (L17, L18).
 
 ```
 import torch
