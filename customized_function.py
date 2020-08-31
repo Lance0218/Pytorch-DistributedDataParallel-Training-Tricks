@@ -15,17 +15,14 @@ def same_seeds(seed=18):
 
 class EarlyStopping:
     """
-    Early stops the training if validation loss doesn't improve after a given patience
+    Early stops the training if validation loss/metrics doesn't improve after a given patience
     """
     def __init__(self, patience=100, verbose=True, delta=0):
         """
         Args:
-            patience (int): How long to wait after last time validation loss improved.
-                            Default: 7
-            verbose (bool): If True, prints a message for each validation loss improvement. 
-                            Default: False
-            delta (float): Minimum change in the monitored quantity to qualify as an improvement.
-                            Default: 0
+            patience (int): How long to wait after last time validation loss improved. Default: 100
+            verbose (bool): If True, prints a message for each validation loss improvement. Default: True
+            delta (float): Minimum change in the monitored quantity to qualify as an improvement. Default: 0
         """
         self.patience = patience
         self.verbose = verbose
