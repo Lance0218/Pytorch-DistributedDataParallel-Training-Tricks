@@ -1,6 +1,6 @@
 # Pytorch-DistributedDataParallel-Training-Tricks
 
-This is an example that integrates **Pytorch DistributedDataParallel, Apex, warmup, learning rate scheduler**, if you need to read this article in Chinese, please check my [Medium](https://medium.com/@fig498etyu6600/training-tricks-for-pytorch-distributed-data-parallel-1cd48cc7d97a).
+This is an example that integrates **Pytorch DistributedDataParallel, Apex, warmup, learning rate scheduler**, if you need to read this article in Chinese, please check my [Medium](https://medium.com/@Lance0218/training-tricks-for-pytorch-distributed-data-parallel-1cd48cc7d97a).
 In the following chapters, I will introduce how to use DistributedDataParallel (DDP). And how to assimilate three training techniques of Apex, warmup, and learning rate scheduler into DDP training in order. I will also mention the set-up of early-stopping and Random seed.
 
 ## DistributedDataParallel (DDP)
