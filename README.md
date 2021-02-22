@@ -110,8 +110,8 @@ for epoch in range(args.epochs):
     # Learning_rate callbacks
     if epoch <= args.warmup_epochs:   # (L28)
         scheduler_wu.step()   # (L29)
-    scheduler_re.step(valid_acc)   # (L30)
-    early_stopping(valid_acc)   # (L31)
+    scheduler_re.step(valid_loss)   # (L30)
+    early_stopping(valid_loss)   # (L31)
     if early_stopping.early_stop:   # (L32)
         break   # (L33)
 ```
