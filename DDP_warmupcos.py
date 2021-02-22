@@ -161,14 +161,14 @@ def model_trainer(args):
 
         # Learning_rate callbacks
         scheduler_wucos.step()
-        early_stopping(valid_acc)
+        early_stopping(valid_loss)
         if early_stopping.early_stop:
             break
 
         # Save_checkpoint
         if args.local_rank == 0:
             if valid_acc > best_valid_acc:
-                best_valid_loss = valid_acc
+                best_valid_acc = valid_acc
                 torch.save(parallel_model.module.state_dict(), f'{latest_model_path}.pt')
 
     if args.local_rank == 0:
